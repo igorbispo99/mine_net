@@ -25,7 +25,7 @@ BTN_FLAG = "<Button-2>" if platform.system() == 'Darwin' else "<Button-3>"
 
 window = None
 
-model = load_model("mine_net.h5")
+model = load_model("mine_net_v2.h5")
 
 class Minesweeper:
 
