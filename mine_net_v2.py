@@ -146,42 +146,42 @@ class MinesweeperCNN(nn.Module):
         super().__init__()
         
         self.block1 = nn.Sequential(
-            nn.Conv2d(2, 32, kernel_size=2, padding=1),
+            nn.Conv2d(2, 32, kernel_size=2, padding='same'),
             nn.ReLU(),
-            nn.Conv2d(32, 32, kernel_size=2, padding=1),
+            nn.Conv2d(32, 32, kernel_size=2, padding='same'),
             nn.ReLU(),
-            nn.Conv2d(32, 64, kernel_size=2, padding=1),
+            nn.Conv2d(32, 64, kernel_size=2, padding='same'),
             nn.ReLU(),
             nn.BatchNorm2d(64)
         )
         
         self.block2 = nn.Sequential(
-            nn.Conv2d(64, 64, kernel_size=3, padding=1),
+            nn.Conv2d(64, 64, kernel_size=3, padding='same'),
             nn.ReLU(),
-            nn.Conv2d(64, 64, kernel_size=3, padding=1),
+            nn.Conv2d(64, 64, kernel_size=3, padding='same'),
             nn.ReLU(),
-            nn.Conv2d(64, 64, kernel_size=3, padding=1),
+            nn.Conv2d(64, 64, kernel_size=3, padding='same'),
             nn.ReLU(),
             nn.BatchNorm2d(64)
         )
         
         self.block3 = nn.Sequential(
-            nn.Conv2d(64, 128, kernel_size=5, padding=2),
+            nn.Conv2d(64, 128, kernel_size=5, padding='same'),
             nn.ReLU(),
-            nn.Conv2d(128, 128, kernel_size=5, padding=2),
+            nn.Conv2d(128, 128, kernel_size=5, padding='same'),
             nn.ReLU(),
-            nn.Conv2d(128, 128, kernel_size=5, padding=2),
+            nn.Conv2d(128, 128, kernel_size=5, padding='same'),
             nn.ReLU(),
             nn.BatchNorm2d(128)
         )
         
         self.block4 = nn.Sequential(
-            nn.Conv2d(128, 256, kernel_size=7, padding=3),
+            nn.Conv2d(128, 256, kernel_size=7, padding='same'),
             nn.ReLU(),
             nn.BatchNorm2d(256)
         )
         
-        self.output = nn.ConvTranspose2d(256, 1, kernel_size=1)
+        self.output = nn.Conv2d(256, 1, kernel_size=1)
         
     def forward(self, x):
         x = self.block1(x)
